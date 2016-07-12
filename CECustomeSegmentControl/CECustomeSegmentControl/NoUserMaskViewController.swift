@@ -54,7 +54,8 @@ class NoUserMaskViewController: UIViewController {
         self.colorImageView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addConstraints([creatConstraint(.Top),
                                   creatConstraint(.Left),
-                                    creatConstraint(.Bottom), creatConstraint(.Right)])
+                                  creatConstraint(.Bottom),
+                                  creatConstraint(.Right)])
         
     }
     
@@ -71,14 +72,9 @@ class NoUserMaskViewController: UIViewController {
 
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touche in touches {
-            let maskCenter = touche.locationInView(self.view)
-            let colorImageCenter = touche.locationInView(self.maskView)
-            print(maskCenter)
-            print(colorImageCenter)
-            self.maskView.center = maskCenter
+            self.maskView.center = touche.locationInView(self.view)
         }
     }
-
 
 
     override func didReceiveMemoryWarning() {
