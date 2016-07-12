@@ -48,8 +48,9 @@ class MaskViewController: UIViewController {
     func  addMaskLayer() {
         maskImage = UIImage(named: MaskImageName)
         maskLayer = CALayer()
-        maskLayer.frame = CGRect(origin: CGPointZero, size: maskImage!.size)
-        maskLayer.contents = maskImage!.CGImage
+        maskLayer.frame = CGRect(origin: CGPointZero, size: maskImage.size)
+        //maskLayer.backgroundColor = UIColor.blackColor().CGColor      //使用背景色
+        maskLayer.contents = maskImage!.CGImage                         //使用图片填充
         maskLayer.position = view.center
         colorImageView.layer.mask = maskLayer
     }

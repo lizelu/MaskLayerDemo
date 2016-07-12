@@ -40,10 +40,23 @@
                                     <segue destination="RAQ-sP-qbt" kind="show" id="A5B-mD-tSV"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbn-4u-EPR">
+                                <rect key="frame" x="20" y="187" width="109" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="109" id="GQf-Lm-dPi"/>
+                                    <constraint firstAttribute="height" constant="30" id="l71-bU-HgU"/>
+                                </constraints>
+                                <state key="normal" title="Mask + Label"/>
+                                <connections>
+                                    <segue destination="wqc-gW-GsN" kind="show" id="sWE-rl-UWU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="10Q-ko-uav" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="21L-lh-H8s"/>
+                            <constraint firstItem="cbn-4u-EPR" firstAttribute="top" secondItem="aYb-Kx-R1Q" secondAttribute="bottom" constant="15" id="FPv-5T-l47"/>
+                            <constraint firstItem="cbn-4u-EPR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Qhr-YV-wte"/>
                             <constraint firstItem="aYb-Kx-R1Q" firstAttribute="top" secondItem="10Q-ko-uav" secondAttribute="bottom" constant="20" id="ThZ-Mr-OxY"/>
                             <constraint firstItem="10Q-ko-uav" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="28" id="VYl-yb-fLO"/>
                             <constraint firstItem="aYb-Kx-R1Q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="vww-TG-Zqu"/>
@@ -54,6 +67,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1079" y="349"/>
+        </scene>
+        <!--Mask Label View Controller-->
+        <scene sceneID="Ask-Qz-Znr">
+            <objects>
+                <viewController storyboardIdentifier="MaskLabelViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wqc-gW-GsN" customClass="MaskLabelViewController" customModule="CECustomeSegmentControl" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="coz-Tz-sKD"/>
+                        <viewControllerLayoutGuide type="bottom" id="krw-1n-XXQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NkA-F6-7E6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2ME-RI-slf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1870" y="423"/>
         </scene>
         <!--No User Mask View Controller-->
         <scene sceneID="4I8-b9-QvG">
@@ -71,7 +102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bhg-R5-PEE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1758" y="413"/>
+            <point key="canvasLocation" x="1870" y="-227"/>
         </scene>
         <!--Mask View Controller-->
         <scene sceneID="xMj-Tf-QYN">
@@ -89,7 +120,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FNJ-7R-hpM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1758" y="-233"/>
+            <point key="canvasLocation" x="1870" y="-885"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="2G8-KW-gOU">
