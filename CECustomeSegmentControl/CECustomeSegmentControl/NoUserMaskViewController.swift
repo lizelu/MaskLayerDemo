@@ -30,7 +30,7 @@ class NoUserMaskViewController: UIViewController {
     }
     
     func addMaskView() {
-        let maskFrame = CGRect(origin: CGPointZero, size: CGSizeMake(100, 100))
+        let maskFrame = CGRect(origin: CGPointZero, size: CGSizeMake(150, 150))
         maskView = UIView(frame: maskFrame)
         maskView.center = self.view.center
         maskView.layer.cornerRadius = 50
@@ -41,17 +41,32 @@ class NoUserMaskViewController: UIViewController {
     }
     
     func addColorImageView() {
-        let colorImageFrame = CGRect(origin: CGPointZero, size: self.view.bounds.size)
-        colorImageView = UIImageView(frame: colorImageFrame)
-        colorImageView.center = CGPointMake(50, 50)
+        colorImageView = UIImageView.init()
         colorImageView.contentMode = .ScaleAspectFit
         colorImageView.image = UIImage(named: ColorImageName)
         self.maskView.addSubview(colorImageView)
+        
+        self.addColorImageConstraint()
+        
     }
     
-//    func countColorImageViewCenter() -> CGPoint {
-//        
-//    }
+    func addColorImageConstraint() {
+        self.colorImageView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addConstraints([creatConstraint(.Top),
+                                  creatConstraint(.Left),
+                                    creatConstraint(.Bottom), creatConstraint(.Right)])
+        
+    }
+    
+    func creatConstraint(attribute:NSLayoutAttribute) ->  NSLayoutConstraint{
+        return NSLayoutConstraint.init(item: colorImageView,
+                                attribute: attribute,
+                                relatedBy: .Equal,
+                                toItem: self.view,
+                                attribute: attribute,
+                                multiplier: 1,
+                                constant: 0)
+    }
     
 
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
