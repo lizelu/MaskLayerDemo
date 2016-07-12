@@ -23,26 +23,24 @@ class NoUserMaskViewController: UIViewController {
     
     func addGrayImageView() {
         grayImageView = UIImageView(frame: self.view.bounds)
-        grayImageView.backgroundColor = UIColor.init(patternImage: UIImage(named: "gray")!)
-        grayImageView.contentMode = .ScaleAspectFit
+        grayImageView.contentMode = .ScaleAspectFill
         grayImageView.image = UIImage(named: GrayImageName)
         self.view.addSubview(grayImageView)
     }
     
     func addMaskView() {
-        let maskFrame = CGRect(origin: CGPointZero, size: CGSizeMake(150, 150))
+        let maskFrame = CGRect(origin: CGPointZero, size: CGSizeMake(100, 100))
         maskView = UIView(frame: maskFrame)
         maskView.center = self.view.center
         maskView.layer.cornerRadius = 50
         maskView.clipsToBounds = true
-        maskView.backgroundColor = UIColor.init(patternImage: UIImage(named: "color")!)
         self.view.addSubview(maskView)
         self.addColorImageView()
     }
     
     func addColorImageView() {
         colorImageView = UIImageView.init()
-        colorImageView.contentMode = .ScaleAspectFit
+        colorImageView.contentMode = .ScaleAspectFill
         colorImageView.image = UIImage(named: ColorImageName)
         self.maskView.addSubview(colorImageView)
         

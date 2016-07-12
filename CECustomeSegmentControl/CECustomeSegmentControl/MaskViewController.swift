@@ -30,18 +30,16 @@ class MaskViewController: UIViewController {
     
     func addGrayImageView() {
         grayImageView = UIImageView(frame: self.view.bounds)
-        grayImageView.backgroundColor = UIColor.init(patternImage: UIImage(named: "gray")!)
         self.addImageView(grayImageView, imageName: GrayImageName)
     }
     
     func addColorImageView() {
         colorImageView = UIImageView(frame: self.view.bounds)
-        colorImageView.backgroundColor = UIColor.init(patternImage: UIImage(named: "color")!)
         self.addImageView(colorImageView, imageName: ColorImageName)
     }
     
     func addImageView(imageView: UIImageView, imageName: String) {
-        imageView.contentMode = .ScaleAspectFit
+        imageView.contentMode = .ScaleAspectFill
         imageView.image = UIImage(named: imageName)
         self.view.addSubview(imageView)
     }
