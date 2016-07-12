@@ -13,6 +13,7 @@ class NoUserMaskViewController: UIViewController {
     var grayImageView: UIImageView!
     var colorImageView: UIImageView!
     var maskView: UIView!
+    let maskWidth: CGFloat = 200
     
     
     override func viewDidLoad() {
@@ -29,10 +30,10 @@ class NoUserMaskViewController: UIViewController {
     }
     
     func addMaskView() {
-        let maskFrame = CGRect(origin: CGPointZero, size: CGSizeMake(150, 150))
+        let maskFrame = CGRect(origin: CGPointZero, size: CGSizeMake(maskWidth, maskWidth))
         maskView = UIView(frame: maskFrame)
         maskView.center = self.view.center
-        maskView.layer.cornerRadius = 75
+        maskView.layer.cornerRadius = maskWidth / 2
         maskView.clipsToBounds = true
         self.view.addSubview(maskView)
         self.addColorImageView()
