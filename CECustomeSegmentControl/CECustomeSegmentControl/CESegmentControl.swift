@@ -116,6 +116,13 @@ class CESegmentControl: UIView {
         maskLayer.frame = getSubViewFrame(sender.tag)
     }
     
+    func changeMaskX(x: CGFloat) {
+        print(x)
+        if x >= 0 && x <= self.frame.size.width - self.subViewWidth {
+            maskLayer.frame.origin.x = x
+        }
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

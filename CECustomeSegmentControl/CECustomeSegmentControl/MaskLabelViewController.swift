@@ -16,6 +16,8 @@ class MaskLabelViewController: UIViewController {
     var maskLayer: CALayer!
     var maskImage: UIImage!
     
+    var segmentControl: CESegmentControl!
+    
     
 
     override func viewDidLoad() {
@@ -56,7 +58,7 @@ class MaskLabelViewController: UIViewController {
     
     
     func addCustomeSegmentControl() {
-        let segmentControl: CESegmentControl = CESegmentControl.init(frame: CGRectMake(10, 200, 300, 60))
+        self.segmentControl = CESegmentControl.init(frame: CGRectMake(10, 200, 300, 60))
         self.view.addSubview(segmentControl)
     }
     
@@ -75,6 +77,8 @@ class MaskLabelViewController: UIViewController {
             var frame = maskLayer.frame
             frame.origin.x = movePoint.x - frame.size.width/2
             maskLayer?.frame = frame
+            
+            self.segmentControl.changeMaskX(movePoint.x - self.segmentControl.subViewWidth/2)
         }
     }
     
