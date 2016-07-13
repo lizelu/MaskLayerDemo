@@ -23,6 +23,8 @@ class MaskLabelViewController: UIViewController {
         self.createBackgoundLabel()
         self.createBeforeLabel()
         self.addMask()
+        
+        self.addCustomeSegmentControl()
     }
     
     func createBackgoundLabel() {
@@ -39,6 +41,7 @@ class MaskLabelViewController: UIViewController {
         label.font = UIFont.boldSystemFontOfSize(50)
         label.textColor = textColor
         label.text = "Hello Word"
+        label.textAlignment = .Center
         self.view.addSubview(label)
     }
     
@@ -50,8 +53,18 @@ class MaskLabelViewController: UIViewController {
         self.beforeLabel.layer.mask = maskLayer
     }
     
+    
+    
+    func addCustomeSegmentControl() {
+        let segmentControl: CESegmentControl = CESegmentControl.init(frame: CGRectMake(10, 200, 300, 60))
+        self.view.addSubview(segmentControl)
+    }
+    
+    
+    
+    
     func getLableFrame() -> CGRect {
-        return CGRectMake(20, 100, 300, 50)
+        return CGRectMake(0, 100, self.view.frame.size.width, 50)
     }
     
     
@@ -60,10 +73,13 @@ class MaskLabelViewController: UIViewController {
             CATransaction.setDisableActions(true)
             let movePoint = touche.locationInView(self.beforeLabel)
             var frame = maskLayer.frame
-            frame.origin.x = movePoint.x
+            frame.origin.x = movePoint.x - frame.size.width/2
             maskLayer?.frame = frame
         }
     }
+    
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
