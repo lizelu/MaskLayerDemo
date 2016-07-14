@@ -52,6 +52,7 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
     private var scrollSubViewsArray: Array<CEScrollSubView> = []     //存储三个视图
     private var currentPage: Int = 0                            //当前页数
     private var direction:CGFloat = 1                           //运动方向，1 <==> right, -1 <==> left
+    private var isDraging: Bool = false
     
     
     override init(frame: CGRect) {
@@ -71,7 +72,7 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
         
         weak var weak_self = self
         self.segmentControl.setButtonTouchUpInsideClosure { (page) in
-            
+            weak_self!.isDraging = false
             if page != weak_self!.currentPage {
                 print(page)
                 if page > weak_self!.currentPage {
@@ -79,6 +80,8 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
                 } else {
                     self.direction = -1
                 }
+                
+                weak_self?.currentPage = page
                 
                 UIView.animateWithDuration(0.3, animations: {
                     weak_self!.scrollView.contentOffset.x = weak_self!.scrollView.contentOffset.x + (weak_self!.width * weak_self!.direction)  - 1
@@ -197,8 +200,7 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
      - parameter scrollView:
      */
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        
-        
+    
         if titleArray.count > 0 {
             let contentOffsetX = scrollView.contentOffset.x + CGFloat(currentPage - 1) * self.width
             print(contentOffsetX)
@@ -207,6 +209,11 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
         
         self.moveImageView(scrollView.contentOffset.x)
     }
+    
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        self.isDraging = true
+    }
+    
     
     /**
      移动Button到合适的位置
@@ -217,8 +224,10 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
         let temp = offsetX / self.width
         
         if temp == 0 || temp == 1 || temp == 2 {
-            let position: Int = Int(temp) - 1
-            self.currentPage = getCurrentContentIndex(self.currentPage + position)
+            if isDraging {
+                let position: Int = Int(temp) - 1
+                self.currentPage = getCurrentContentIndex(self.currentPage + position)
+            }
             self.scrollView.contentOffset.x = self.width
             self.setScrollSubView(self.currentPage)
         }
