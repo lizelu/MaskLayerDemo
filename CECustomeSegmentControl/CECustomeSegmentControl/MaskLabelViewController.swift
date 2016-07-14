@@ -59,6 +59,7 @@ class MaskLabelViewController: UIViewController {
     
     func addCustomeSegmentControl() {
         self.segmentControl = CESegmentControl.init(frame: CGRectMake(10, 200, 300, 60))
+        self.segmentControl.setTitleArray(["Swift", "Apple", "ObjC", "iPhone"])
         self.view.addSubview(segmentControl)
     }
     

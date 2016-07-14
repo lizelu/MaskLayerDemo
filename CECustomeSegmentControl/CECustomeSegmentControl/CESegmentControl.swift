@@ -10,9 +10,10 @@ import UIKit
 enum LabelType {
     case BackgroundLabel, BeforeLabel
 }
+typealias ButtonTouchUpInsideClosureTag = (Int) -> Void
 
 class CESegmentControl: UIView {
-    var titleArray: Array<String> = ["Swift", "Apple", "ObjC"]
+    private var titleArray: Array<String> = ["Swift", "Apple", "ObjC"]
     var backgroundTextColor: UIColor = UIColor.blackColor()
     var beforeTextColor: UIColor = UIColor.whiteColor()
     
@@ -24,6 +25,7 @@ class CESegmentControl: UIView {
     var backroundView: UIView!
     var beforeView: UIView!
     var maskLayer: CALayer!
+    private var touchUpInsideClosure: ButtonTouchUpInsideClosureTag!    //按钮点击事件回调
     
     
     var subViewWidth: CGFloat {
@@ -40,6 +42,14 @@ class CESegmentControl: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.addAllSubView()
+    }
+    
+    func setButtonTouchUpInsideClosure(closure: ButtonTouchUpInsideClosureTag) {
+        self.touchUpInsideClosure = closure
+    }
+    
+    func addAllSubView() {
         self.addBackgoundView()
         self.addBeforView()
         self.addMaskForBeforeView()
@@ -108,16 +118,24 @@ class CESegmentControl: UIView {
         }
     }
     
+    func setTitleArray(titleArray: Array<String>) {
+        self.titleArray = titleArray;
+        self.backroundView.removeFromSuperview();
+        self.addAllSubView()
+    }
+    
     func getSubViewFrame(index: Int) -> CGRect {
         return CGRectMake(CGFloat(index) * subViewWidth, 0, subViewWidth, subViewHeight)
     }
     
     func tapButton(sender: UIButton) {
+        if self.touchUpInsideClosure != nil {
+            self.touchUpInsideClosure(sender.tag)
+        }
         maskLayer.frame = getSubViewFrame(sender.tag)
     }
     
     func changeMaskX(x: CGFloat) {
-        print(x)
         if x >= 0 && x <= self.frame.size.width - self.subViewWidth {
             maskLayer.frame.origin.x = x
         }

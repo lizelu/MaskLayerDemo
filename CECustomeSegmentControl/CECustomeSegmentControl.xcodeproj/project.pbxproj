@@ -16,6 +16,9 @@
 		F4E249CC1D33A19E009935EE /* NoUserMaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E249CB1D33A19E009935EE /* NoUserMaskViewController.swift */; };
 		F4E249CE1D3498CB009935EE /* MaskLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E249CD1D3498CB009935EE /* MaskLabelViewController.swift */; };
 		F4E249D01D36225A009935EE /* CESegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E249CF1D36225A009935EE /* CESegmentControl.swift */; };
+		F4E249D51D372B26009935EE /* CESegmentControlDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E249D41D372B26009935EE /* CESegmentControlDisplayView.swift */; };
+		F4E249D71D3735AE009935EE /* CEScrollSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E249D61D3735AE009935EE /* CEScrollSubView.swift */; };
+		F4E249D91D373ABB009935EE /* CESegmentControlDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E249D81D373ABB009935EE /* CESegmentControlDisplayViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +32,10 @@
 		F4E249C91D33978B009935EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F4E249CB1D33A19E009935EE /* NoUserMaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoUserMaskViewController.swift; sourceTree = "<group>"; };
 		F4E249CD1D3498CB009935EE /* MaskLabelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskLabelViewController.swift; sourceTree = "<group>"; };
-		F4E249CF1D36225A009935EE /* CESegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESegmentControl.swift; sourceTree = "<group>"; };
+		F4E249CF1D36225A009935EE /* CESegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CESegmentControl.swift; path = ../CESegmentControl.swift; sourceTree = "<group>"; };
+		F4E249D41D372B26009935EE /* CESegmentControlDisplayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESegmentControlDisplayView.swift; sourceTree = "<group>"; };
+		F4E249D61D3735AE009935EE /* CEScrollSubView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEScrollSubView.swift; sourceTree = "<group>"; };
+		F4E249D81D373ABB009935EE /* CESegmentControlDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESegmentControlDisplayViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,10 +75,10 @@
 				F4E249C71D338F39009935EE /* MaskViewController.swift */,
 				F4E249CB1D33A19E009935EE /* NoUserMaskViewController.swift */,
 				F4E249CD1D3498CB009935EE /* MaskLabelViewController.swift */,
+				F4E249D81D373ABB009935EE /* CESegmentControlDisplayViewController.swift */,
 				F4E249B81D33876B009935EE /* Main.storyboard */,
 				F4E249BD1D33876B009935EE /* LaunchScreen.storyboard */,
 				F4E249C01D33876B009935EE /* Info.plist */,
-				F4E249CF1D36225A009935EE /* CESegmentControl.swift */,
 			);
 			path = CECustomeSegmentControl;
 			sourceTree = "<group>";
@@ -80,6 +86,9 @@
 		F4E249C61D33880B009935EE /* CECustomeSegmentControl */ = {
 			isa = PBXGroup;
 			children = (
+				F4E249CF1D36225A009935EE /* CESegmentControl.swift */,
+				F4E249D41D372B26009935EE /* CESegmentControlDisplayView.swift */,
+				F4E249D61D3735AE009935EE /* CEScrollSubView.swift */,
 			);
 			path = CECustomeSegmentControl;
 			sourceTree = "<group>";
@@ -155,10 +164,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4E249D91D373ABB009935EE /* CESegmentControlDisplayViewController.swift in Sources */,
 				F4E249CE1D3498CB009935EE /* MaskLabelViewController.swift in Sources */,
 				F4E249D01D36225A009935EE /* CESegmentControl.swift in Sources */,
 				F4E249CC1D33A19E009935EE /* NoUserMaskViewController.swift in Sources */,
 				F4E249B71D33876B009935EE /* ViewController.swift in Sources */,
+				F4E249D71D3735AE009935EE /* CEScrollSubView.swift in Sources */,
+				F4E249D51D372B26009935EE /* CESegmentControlDisplayView.swift in Sources */,
 				F4E249C81D338F39009935EE /* MaskViewController.swift in Sources */,
 				F4E249B51D33876B009935EE /* AppDelegate.swift in Sources */,
 			);
