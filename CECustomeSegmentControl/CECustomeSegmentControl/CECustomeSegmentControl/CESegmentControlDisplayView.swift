@@ -72,20 +72,19 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
         weak var weak_self = self
         self.segmentControl.setButtonTouchUpInsideClosure { (page) in
             
-            if page != self.currentPage {
+            if page != weak_self!.currentPage {
                 print(page)
-                if page > self.currentPage {
-                    self.direction = 1
+                if page > weak_self!.currentPage {
+                    weak_self!.direction = 1
                 } else {
                     self.direction = -1
                 }
                 
-                weak_self!.currentPage = page
                 UIView.animateWithDuration(0.3, animations: {
-                    self.scrollView.contentOffset.x = self.scrollView.contentOffset.x + (self.width * self.direction)  - 1
+                    weak_self!.scrollView.contentOffset.x = weak_self!.scrollView.contentOffset.x + (weak_self!.width * weak_self!.direction)  - 1
                     }, completion: { (result) in
                         if result {
-                            self.scrollView.contentOffset.x += 1
+                            weak_self!.scrollView.contentOffset.x += 1
                         }
                 })
 
