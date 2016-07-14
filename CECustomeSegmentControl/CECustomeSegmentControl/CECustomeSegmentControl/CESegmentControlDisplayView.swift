@@ -73,6 +73,7 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
         weak var weak_self = self
         self.segmentControl.setButtonTouchUpInsideClosure { (page) in
             weak_self!.isDraging = false
+            weak_self?.setSameSubView(page)
             if page != weak_self!.currentPage {
                 print(page)
                 if page > weak_self!.currentPage {
@@ -131,13 +132,26 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
         let titleIndexArray = [getBeforeContentIndex(currentPage),
                                getCurrentContentIndex(currentPage),
                                getLastContentIndex(currentPage)]
-        
         for i in 0..<self.scrollSubViewsArray.count {
             let tempView = self.scrollSubViewsArray[i]
             let title = self.titleArray[titleIndexArray[i]]
             tempView.configScrollSubView(title)
         }
     }
+    
+    /**
+     设置ScrollSubView上应显示的内容
+     
+     - parameter currentPage: 当前页数
+     */
+    private func setSameSubView(currentPage: Int) {
+        let title = self.titleArray[getCurrentContentIndex(currentPage)]
+        for i in 0..<self.scrollSubViewsArray.count {
+            let tempView = self.scrollSubViewsArray[i]
+            tempView.configScrollSubView(title)
+        }
+    }
+
     
     
     /**
