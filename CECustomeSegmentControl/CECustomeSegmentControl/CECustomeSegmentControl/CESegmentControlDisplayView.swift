@@ -72,29 +72,32 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
         
         weak var weak_self = self
         self.segmentControl.setButtonTouchUpInsideClosure { (page) in
-            weak_self!.isDraging = false
-            weak_self?.setSameSubView(page)
-            if page != weak_self!.currentPage {
-                print(page)
-                if page > weak_self!.currentPage {
-                    weak_self!.direction = 1
-                } else {
-                    self.direction = -1
-                }
-                
-                weak_self?.currentPage = page
-                
-                UIView.animateWithDuration(0.3, animations: {
-                    weak_self!.scrollView.contentOffset.x = weak_self!.scrollView.contentOffset.x + (weak_self!.width * weak_self!.direction)  - 1
-                    }, completion: { (result) in
-                        if result {
-                            weak_self!.scrollView.contentOffset.x += 1
-                        }
-                })
-
-            }
+            weak_self?.tapButton(page)
         }
         self.addSubview(segmentControl)
+    }
+    
+    private func tapButton(page: Int) {
+        self.isDraging = false
+        self.setSameSubView(page)
+        if page != currentPage {
+            
+            if page > currentPage {
+                direction = 1
+            } else {
+                direction = -1
+            }
+            
+            currentPage = page
+            
+            UIView.animateWithDuration(0.3, animations: {
+                self.scrollView.contentOffset.x = self.scrollView.contentOffset.x + (self.width * self.direction)  - 1
+                }, completion: { (result) in
+                    if result {
+                        self.scrollView.contentOffset.x += 1
+                    }
+            })
+        }
     }
     
     private func addScrollView() {
@@ -117,6 +120,7 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
             tempView.tag = i
             tempView.layer.borderColor = UIColor.brownColor().CGColor
             tempView.layer.borderWidth = 10
+            tempView.backgroundColor = UIColor.blackColor()
             self.scrollView.addSubview(tempView)
             self.scrollSubViewsArray.append(tempView)
         }
@@ -217,7 +221,6 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
     
         if titleArray.count > 0 {
             let contentOffsetX = scrollView.contentOffset.x + CGFloat(currentPage - 1) * self.width
-            print(contentOffsetX)
             self.segmentControl.changeMaskX(contentOffsetX*(1/CGFloat(titleArray.count)))
         }
         
@@ -253,6 +256,6 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
     }
     
     deinit {
-        print("释放")
+        print("DisplayView释放")
     }
 }

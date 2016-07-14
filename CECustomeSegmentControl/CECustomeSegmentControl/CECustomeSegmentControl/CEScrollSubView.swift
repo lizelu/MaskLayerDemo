@@ -18,8 +18,9 @@ class CEScrollSubView: UIView {
     
     private func addLabel() {
         self.textLabel = UILabel(frame: self.bounds)
-        self.textLabel.font = UIFont.boldSystemFontOfSize(20)
+        self.textLabel.font = UIFont.boldSystemFontOfSize(50)
         self.textLabel.textAlignment = .Center
+        self.textLabel.textColor = UIColor.whiteColor()
         self.addSubview(self.textLabel)
     }
     
@@ -31,5 +32,9 @@ class CEScrollSubView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        print("ScrollSubView释放")
     }
 }
