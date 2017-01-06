@@ -217,7 +217,7 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
      
      - parameter scrollView:
      */
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
     
         if titleArray.count > 0 {
             let contentOffsetX = scrollView.contentOffset.x + CGFloat(currentPage - 1) * self.width
@@ -227,7 +227,7 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
         self.moveImageView(offsetX: scrollView.contentOffset.x)
     }
     
-    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.isDraging = true
     }
     
