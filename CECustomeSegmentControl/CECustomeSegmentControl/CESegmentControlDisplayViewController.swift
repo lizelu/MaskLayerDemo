@@ -12,10 +12,9 @@ class CESegmentControlDisplayViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.view.frame.width
-        let segmentScollView = CESegmentControlDisplayView.init(frame: CGRectMake(10, 60, self.view.frame.width - 20, self.view.frame.height - 100));
-        segmentScollView.setTitlesArray(["Swift", "Apple", "ObjC", "iPhone"])
+        
+        let segmentScollView = CESegmentControlDisplayView.init(frame: CGRect(x: 10, y: 60, width: self.view.frame.width - 20, height: self.view.frame.height - 100));
+        segmentScollView.setTitlesArray(titleArray: ["Swift", "Apple", "ObjC", "iPhone"])
         self.view.addSubview(segmentScollView)
     }
 

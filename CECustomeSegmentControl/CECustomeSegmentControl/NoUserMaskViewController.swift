@@ -24,13 +24,13 @@ class NoUserMaskViewController: UIViewController {
     
     func addGrayImageView() {
         grayImageView = UIImageView(frame: self.view.bounds)
-        grayImageView.contentMode = .ScaleAspectFill
+        grayImageView.contentMode = .scaleAspectFill
         grayImageView.image = UIImage(named: GrayImageName)
         self.view.addSubview(grayImageView)
     }
     
     func addMaskView() {
-        let maskFrame = CGRect(origin: CGPointZero, size: CGSizeMake(maskWidth, maskWidth))
+        let maskFrame = CGRect(origin: CGPoint.zero, size: CGSize(width:maskWidth, height:maskWidth))
         maskView = UIView(frame: maskFrame)
         maskView.center = self.view.center
         maskView.layer.cornerRadius = maskWidth / 2
@@ -41,7 +41,7 @@ class NoUserMaskViewController: UIViewController {
     
     func addColorImageView() {
         colorImageView = UIImageView.init()
-        colorImageView.contentMode = .ScaleAspectFill
+        colorImageView.contentMode = .scaleAspectFill
         colorImageView.image = UIImage(named: ColorImageName)
         self.maskView.addSubview(colorImageView)
         
@@ -51,30 +51,28 @@ class NoUserMaskViewController: UIViewController {
     
     func addColorImageConstraint() {
         self.colorImageView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addConstraints([creatConstraint(.Top),
-                                  creatConstraint(.Left),
-                                  creatConstraint(.Bottom),
-                                  creatConstraint(.Right)])
+        self.view.addConstraints([creatConstraint(attribute: .top),
+                                  creatConstraint(attribute: .left),
+                                  creatConstraint(attribute: .bottom),
+                                  creatConstraint(attribute: .right)])
         
     }
     
     func creatConstraint(attribute:NSLayoutAttribute) ->  NSLayoutConstraint{
         return NSLayoutConstraint.init(item: colorImageView,
                                 attribute: attribute,
-                                relatedBy: .Equal,
+                                relatedBy: .equal,
                                 toItem: self.view,
                                 attribute: attribute,
                                 multiplier: 1,
                                 constant: 0)
     }
     
-
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touche in touches {
-            self.maskView.center = touche.locationInView(self.view)
+            self.maskView.center = touche.location(in: self.view)
         }
     }
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

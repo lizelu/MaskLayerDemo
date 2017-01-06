@@ -30,16 +30,16 @@ class MaskViewController: UIViewController {
     
     func addGrayImageView() {
         grayImageView = UIImageView(frame: self.view.bounds)
-        self.addImageView(grayImageView, imageName: GrayImageName)
+        self.addImageView(imageView: grayImageView, imageName: GrayImageName)
     }
     
     func addColorImageView() {
         colorImageView = UIImageView(frame: self.view.bounds)
-        self.addImageView(colorImageView, imageName: ColorImageName)
+        self.addImageView(imageView: colorImageView, imageName: ColorImageName)
     }
     
     func addImageView(imageView: UIImageView, imageName: String) {
-        imageView.contentMode = .ScaleAspectFill
+        imageView.contentMode = .scaleAspectFill
         imageView.image = UIImage(named: imageName)
         self.view.addSubview(imageView)
     }
@@ -48,18 +48,18 @@ class MaskViewController: UIViewController {
     func  addMaskLayer() {
         maskImage = UIImage(named: MaskImageName)
         maskLayer = CALayer()
-        maskLayer.frame = CGRect(origin: CGPointZero, size: maskImage.size)
-        //maskLayer.backgroundColor = UIColor.blackColor().CGColor      //使用背景色
-        maskLayer.contents = maskImage!.CGImage                         //使用图片填充
+        maskLayer.frame = CGRect(origin: CGPoint.zero, size: maskImage.size)
+        maskLayer.backgroundColor = UIColor.black.cgColor      //使用背景色
+        maskLayer.contents = maskImage!.cgImage                         //使用图片填充
         maskLayer.position = view.center
         colorImageView.layer.mask = maskLayer
     }
     
 
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touche in touches {
             CATransaction.setDisableActions(true)
-            maskLayer?.position = touche.locationInView(self.view)
+            maskLayer?.position = touche.location(in: self.view)
         }
     }
 

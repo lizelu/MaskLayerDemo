@@ -18,9 +18,9 @@ class CEScrollSubView: UIView {
     
     private func addLabel() {
         self.textLabel = UILabel(frame: self.bounds)
-        self.textLabel.font = UIFont.boldSystemFontOfSize(50)
-        self.textLabel.textAlignment = .Center
-        self.textLabel.textColor = UIColor.whiteColor()
+        self.textLabel.font = UIFont.boldSystemFont(ofSize: 50)
+        self.textLabel.textAlignment = .center
+        self.textLabel.textColor = UIColor.white
         self.addSubview(self.textLabel)
     }
     

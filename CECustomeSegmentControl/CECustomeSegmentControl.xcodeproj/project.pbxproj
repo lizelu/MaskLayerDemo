@@ -125,6 +125,8 @@
 				TargetAttributes = {
 					F4E249B01D33876B009935EE = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = N5WRHCE748;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -285,11 +287,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = N5WRHCE748;
 				INFOPLIST_FILE = CECustomeSegmentControl/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ZeluLi.CECustomeSegmentControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -297,11 +301,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = N5WRHCE748;
 				INFOPLIST_FILE = CECustomeSegmentControl/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ZeluLi.CECustomeSegmentControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

@@ -63,23 +63,23 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
     
     func setTitlesArray(titleArray: Array<String>) {
         self.titleArray = titleArray
-        self.segmentControl.setTitleArray(self.titleArray)
-        self.setScrollSubView(0)
+        self.segmentControl.setTitleArray(titleArray: self.titleArray)
+        self.setScrollSubView(currentPage: 0)
     }
     
     private func addTopSegmentControl() {
-        self.segmentControl = CESegmentControl.init(frame: CGRectMake(0, 0, topSegmentControlWidth, topSegmentControlHeight))
+        self.segmentControl = CESegmentControl.init(frame: CGRect(x:0, y:0, width:topSegmentControlWidth, height:topSegmentControlHeight))
         
         weak var weak_self = self
         self.segmentControl.setButtonTouchUpInsideClosure { (page) in
-            weak_self?.tapButton(page)
+            weak_self?.tapButton(page: page)
         }
         self.addSubview(segmentControl)
     }
     
     private func tapButton(page: Int) {
         self.isDraging = false
-        self.setSameSubView(page)
+        self.setSameSubView(currentPage: page)
         if page != currentPage {
             
             if page > currentPage {
@@ -90,7 +90,7 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
             
             currentPage = page
             
-            UIView.animateWithDuration(0.3, animations: {
+            UIView.animate(withDuration: 0.3, animations: {
                 self.scrollView.contentOffset.x = self.scrollView.contentOffset.x + (self.width * self.direction)  - 1
                 }, completion: { (result) in
                     if result {
@@ -101,14 +101,14 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
     }
     
     private func addScrollView() {
-        self.scrollView = UIScrollView.init(frame: CGRectMake(0, scrollViewY, scrollViewWidth, scrollViewHeight))
+        self.scrollView = UIScrollView.init(frame: CGRect(x:0, y:scrollViewY, width:scrollViewWidth, height:scrollViewHeight))
         self.scrollView.bounces = false
         self.scrollView.delegate = self
         self.scrollView.showsVerticalScrollIndicator = false
         self.scrollView.showsHorizontalScrollIndicator = false
-        self.scrollView.backgroundColor = UIColor.grayColor()
-        self.scrollView.contentSize = CGSizeMake(3 * self.self.scrollViewWidth, self.scrollViewHeight)
-        self.scrollView.pagingEnabled = true
+        self.scrollView.backgroundColor = UIColor.gray
+        self.scrollView.contentSize = CGSize(width:3 * self.self.scrollViewWidth, height:self.scrollViewHeight)
+        self.scrollView.isPagingEnabled = true
         self.scrollView.contentOffset.x = self.scrollViewWidth
         self.addSubview(self.scrollView)
         self.addScrollSubView()
@@ -116,11 +116,11 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
     
     private func addScrollSubView() {
         for i in 0..<3 {
-            let tempView: CEScrollSubView = CEScrollSubView.init(frame: getScrollSubViewFrameWithIndex(i))
+            let tempView: CEScrollSubView = CEScrollSubView.init(frame: getScrollSubViewFrameWithIndex(index: i))
             tempView.tag = i
-            tempView.layer.borderColor = UIColor.brownColor().CGColor
+            tempView.layer.borderColor = UIColor.brown.cgColor
             tempView.layer.borderWidth = 10
-            tempView.backgroundColor = UIColor.blackColor()
+            tempView.backgroundColor = UIColor.black
             self.scrollView.addSubview(tempView)
             self.scrollSubViewsArray.append(tempView)
         }
@@ -133,13 +133,13 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
      */
     private func setScrollSubView(currentPage: Int) {
         
-        let titleIndexArray = [getBeforeContentIndex(currentPage),
-                               getCurrentContentIndex(currentPage),
-                               getLastContentIndex(currentPage)]
+        let titleIndexArray = [getBeforeContentIndex(currentPage: currentPage),
+                               getCurrentContentIndex(currentPage: currentPage),
+                               getLastContentIndex(currentPage: currentPage)]
         for i in 0..<self.scrollSubViewsArray.count {
             let tempView = self.scrollSubViewsArray[i]
             let title = self.titleArray[titleIndexArray[i]]
-            tempView.configScrollSubView(title)
+            tempView.configScrollSubView(parameter: title as AnyObject)
         }
     }
     
@@ -149,10 +149,10 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
      - parameter currentPage: 当前页数
      */
     private func setSameSubView(currentPage: Int) {
-        let title = self.titleArray[getCurrentContentIndex(currentPage)]
+        let title = self.titleArray[getCurrentContentIndex(currentPage: currentPage)]
         for i in 0..<self.scrollSubViewsArray.count {
             let tempView = self.scrollSubViewsArray[i]
-            tempView.configScrollSubView(title)
+            tempView.configScrollSubView(parameter: title as AnyObject)
         }
     }
 
@@ -181,7 +181,7 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
      - returns:
      */
     private func getBeforeContentIndex(currentPage: Int) -> Int {
-        let beforeNumber = getCurrentContentIndex(currentPage) - 1
+        let beforeNumber = getCurrentContentIndex(currentPage: currentPage) - 1
         return beforeNumber < 0 ? self.titleArray.count - 1 : beforeNumber
     }
     
@@ -193,7 +193,7 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
      - returns:
      */
     private func getLastContentIndex(currentPage: Int) -> Int {
-        let lastNumber = getCurrentContentIndex(currentPage) + 1
+        let lastNumber = getCurrentContentIndex(currentPage: currentPage) + 1
         return lastNumber >= self.titleArray.count ? 0 : lastNumber
     }
 
@@ -206,7 +206,7 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
      - returns:
      */
     private func getScrollSubViewFrameWithIndex(index: Int) -> CGRect{
-        return CGRectMake(CGFloat(index) * self.scrollViewWidth, 0, self.scrollViewWidth, self.scrollViewHeight)
+        return CGRect(x:CGFloat(index) * self.scrollViewWidth, y:0, width:self.scrollViewWidth, height:self.scrollViewHeight)
     }
     
     
@@ -221,10 +221,10 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
     
         if titleArray.count > 0 {
             let contentOffsetX = scrollView.contentOffset.x + CGFloat(currentPage - 1) * self.width
-            self.segmentControl.changeMaskX(contentOffsetX*(1/CGFloat(titleArray.count)))
+            self.segmentControl.changeMaskX(x: contentOffsetX*(1/CGFloat(titleArray.count)))
         }
         
-        self.moveImageView(scrollView.contentOffset.x)
+        self.moveImageView(offsetX: scrollView.contentOffset.x)
     }
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
@@ -243,10 +243,10 @@ class CESegmentControlDisplayView: UIView, UIScrollViewDelegate {
         if temp == 0 || temp == 1 || temp == 2 {
             if isDraging {
                 let position: Int = Int(temp) - 1
-                self.currentPage = getCurrentContentIndex(self.currentPage + position)
+                self.currentPage = getCurrentContentIndex(currentPage: self.currentPage + position)
             }
             self.scrollView.contentOffset.x = self.width
-            self.setScrollSubView(self.currentPage)
+            self.setScrollSubView(currentPage: self.currentPage)
         }
     }
 

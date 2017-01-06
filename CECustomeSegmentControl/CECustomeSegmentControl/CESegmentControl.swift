@@ -14,10 +14,10 @@ typealias ButtonTouchUpInsideClosureTag = (Int) -> Void
 
 class CESegmentControl: UIView {
     private var titleArray: Array<String> = ["Swift", "Apple", "ObjC"]
-    var backgroundTextColor: UIColor = UIColor.blackColor()
-    var beforeTextColor: UIColor = UIColor.whiteColor()
+    var backgroundTextColor: UIColor = UIColor.black
+    var beforeTextColor: UIColor = UIColor.white
     
-    var textFont: UIFont = UIFont.boldSystemFontOfSize(18)
+    var textFont: UIFont = UIFont.boldSystemFont(ofSize: 18)
     
     
     
@@ -45,7 +45,7 @@ class CESegmentControl: UIView {
         self.addAllSubView()
     }
     
-    func setButtonTouchUpInsideClosure(closure: ButtonTouchUpInsideClosureTag) {
+    func setButtonTouchUpInsideClosure(closure: @escaping ButtonTouchUpInsideClosureTag) {
         self.touchUpInsideClosure = closure
     }
     
@@ -64,17 +64,17 @@ class CESegmentControl: UIView {
     
     func addBeforView() {
         self.beforeView = UIView.init(frame: self.bounds)
-        self.beforeView.backgroundColor = UIColor.redColor()
+        self.beforeView.backgroundColor = UIColor.red
         self.backroundView.addSubview(self.beforeView)
         self.addBeforLabels()
     }
     
     func addBackgroundLabels() {
-        self.addLabel(.BackgroundLabel)
+        self.addLabel(labelType: .BackgroundLabel)
     }
     
     func addBeforLabels() {
-        self.addLabel(.BeforeLabel)
+        self.addLabel(labelType: .BeforeLabel)
     }
     
     func addLabel(labelType: LabelType) {
@@ -92,10 +92,10 @@ class CESegmentControl: UIView {
         }
         
         for i in 0..<self.titleArray.count {
-            let tempLabel = UILabel(frame: getSubViewFrame(i))
+            let tempLabel = UILabel(frame: getSubViewFrame(index: i))
             tempLabel.font = self.textFont
             tempLabel.text = self.titleArray[i]
-            tempLabel.textAlignment = .Center
+            tempLabel.textAlignment = .center
             tempLabel.textColor = textColor
             superView.addSubview(tempLabel)
         }
@@ -103,17 +103,17 @@ class CESegmentControl: UIView {
     
     func addMaskForBeforeView() {
         maskLayer = CALayer()
-        maskLayer.frame = getSubViewFrame(0)
+        maskLayer.frame = getSubViewFrame(index: 0)
         maskLayer.cornerRadius = 25
-        maskLayer.backgroundColor = UIColor.redColor().CGColor
+        maskLayer.backgroundColor = UIColor.red.cgColor
         self.beforeView.layer.mask = maskLayer
     }
     
     func addTopButtons() {
         for i in 0..<self.titleArray.count {
-            let tempButton = UIButton.init(frame: getSubViewFrame(i))
+            let tempButton = UIButton.init(frame: getSubViewFrame(index: i))
             tempButton.tag = i
-            tempButton.addTarget(self, action: #selector(tapButton(_:)), forControlEvents: .TouchUpInside)
+            tempButton.addTarget(self, action: #selector(tapButton(sender:)), for: .touchUpInside)
             self.addSubview(tempButton)
         }
     }
@@ -125,14 +125,14 @@ class CESegmentControl: UIView {
     }
     
     func getSubViewFrame(index: Int) -> CGRect {
-        return CGRectMake(CGFloat(index) * subViewWidth, 0, subViewWidth, subViewHeight)
+        return CGRect(x:CGFloat(index) * subViewWidth, y:0, width:subViewWidth, height:subViewHeight)
     }
     
     func tapButton(sender: UIButton) {
         if self.touchUpInsideClosure != nil {
             self.touchUpInsideClosure(sender.tag)
         }
-        maskLayer.frame = getSubViewFrame(sender.tag)
+        maskLayer.frame = getSubViewFrame(index: sender.tag)
     }
     
     func changeMaskX(x: CGFloat) {

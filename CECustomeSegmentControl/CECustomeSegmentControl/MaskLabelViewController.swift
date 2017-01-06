@@ -31,35 +31,35 @@ class MaskLabelViewController: UIViewController {
     
     func createBackgoundLabel() {
         backgroundLabel = UILabel.init(frame: getLableFrame())
-        self.addLabel(backgroundLabel, textColor: UIColor.greenColor())
+        self.addLabel(label: backgroundLabel, textColor: UIColor.green)
     }
     
     func createBeforeLabel() {
         beforeLabel = UILabel.init(frame: getLableFrame())
-        self.addLabel(beforeLabel, textColor: UIColor.redColor())
+        self.addLabel(label: beforeLabel, textColor: UIColor.red)
     }
     
     func addLabel(label: UILabel, textColor: UIColor) {
-        label.font = UIFont.boldSystemFontOfSize(50)
+        label.font = UIFont.boldSystemFont(ofSize: 50)
         label.textColor = textColor
         label.text = "Hello Word"
-        label.textAlignment = .Center
+        label.textAlignment = .center
         self.view.addSubview(label)
     }
     
     func addMask() {
         maskLayer = CALayer()
-        maskLayer.frame = CGRectMake(0, 0, 100, 50)
+        maskLayer.frame = CGRect(x:0, y:0, width:100, height:50)
         maskLayer.cornerRadius = 25
-        maskLayer.backgroundColor = UIColor.blackColor().CGColor
+        maskLayer.backgroundColor = UIColor.black.cgColor
         self.beforeLabel.layer.mask = maskLayer
     }
     
     
     
     func addCustomeSegmentControl() {
-        self.segmentControl = CESegmentControl.init(frame: CGRectMake(10, 200, 300, 60))
-        self.segmentControl.setTitleArray(["Swift", "Apple", "ObjC", "iPhone"])
+        self.segmentControl = CESegmentControl.init(frame: CGRect(x:10, y:200, width:300, height:60))
+        self.segmentControl.setTitleArray(titleArray: ["Swift", "Apple", "ObjC", "iPhone"])
         self.view.addSubview(segmentControl)
     }
     
@@ -67,19 +67,19 @@ class MaskLabelViewController: UIViewController {
     
     
     func getLableFrame() -> CGRect {
-        return CGRectMake(0, 100, self.view.frame.size.width, 50)
+        return CGRect(x:0, y:100, width:self.view.frame.size.width, height:50)
     }
     
     
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touche in touches {
             CATransaction.setDisableActions(true)
-            let movePoint = touche.locationInView(self.beforeLabel)
+            let movePoint = touche.location(in: self.beforeLabel)
             var frame = maskLayer.frame
             frame.origin.x = movePoint.x - frame.size.width/2
             maskLayer?.frame = frame
             
-            self.segmentControl.changeMaskX(movePoint.x - self.segmentControl.subViewWidth/2)
+            self.segmentControl.changeMaskX(x: movePoint.x - self.segmentControl.subViewWidth/2)
         }
     }
     
